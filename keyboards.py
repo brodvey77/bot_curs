@@ -6,7 +6,7 @@ greet_kb = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True).add
 btnHelp = KeyboardButton('справка')
 help_kb = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True).add(btnHelp)
 
-btnUsd = KeyboardButton('Курс доллара США, location', request_location=True)
+btnUsd = KeyboardButton('Курс доллара США')
 usd_kb = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True).add(btnUsd)
 
 btnEuro = KeyboardButton('Курс евро')
