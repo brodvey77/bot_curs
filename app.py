@@ -2,7 +2,8 @@ from config import TOKEN
 import logging
 from aiogram import Bot, Dispatcher, executor, types
 import keyboards as kb
-from curs import func_cource_of_euro
+from curs_euro import func_cource_of_euro
+from curs_usd import func_cource_of_usd
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -30,13 +31,12 @@ async def send_help(message: types.Message):
                         reply_markup=kb.help_kb)
 
 
-
 @dp.message_handler(commands=['usd'])
 async def send_euro(message: types.Message):
     """
     This handler will be called when user sends `/euro` command
     """
-    await message.answer("Курс доллара США", reply_markup=kb.usd_kb)
+    await message.answer("Курс доллара США - " + func_cource_of_usd() + ' рублей')
 
 
 @dp.message_handler(commands=['euro'])
@@ -45,8 +45,6 @@ async def send_euro(message: types.Message):
     This handler will be called when user sends `/euro` command
     """
     await message.answer("Курс евро - " + func_cource_of_euro() + ' рублей')
-
-
 
 
 if __name__ == '__main__':
