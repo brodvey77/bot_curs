@@ -9,7 +9,7 @@ def func_cource_of_usd():
     main_text = source.text
     soup = BeautifulSoup(main_text, 'html.parser')
 
-    table = soup.findAll('div', {'class': 'indicator_el_value mono-num'})
+    table = soup.findAll('div', {'class': 'col-md-2 col-xs-9 _right mono-num'})
 
     count = 0
     cource_of_usd = 0
