@@ -1,26 +1,12 @@
 import math
 import requests
-from bs4 import BeautifulSoup
 
 
 def func_cource_of_euro():
-    url = 'https://cbr.ru/'
+    url = 'https://www.cbr-xml-daily.ru/daily_json.js'
 
-    source = requests.get(url)
-    main_text = source.text
-    soup = BeautifulSoup(main_text, 'html.parser')
+    response = requests.get(url)
+    if response.status_code == 200:
+        text = response.json()
 
-    table = soup.findAll('div', {'class': 'col-md-2 col-xs-9 _right mono-num'})
-
-    cource_of_euro = 0
-    for sum in table[-1:]:
-        cource_of_euro = sum.text
-
-    cource_of_euro_m = cource_of_euro[:7]
-    cource_of_euro_m = cource_of_euro_m.replace(',', '.')
-    cource_of_euro_m = (float(cource_of_euro_m))
-    return str(cource_of_euro_m)
-    # cource_of_euro_m_o = math.ceil(cource_of_euro_m)
-    # return cource_of_euro_m_o
-
-# print(func_cource_of_euro())
+    return str(text['Valute']['EUR']['Value'])
